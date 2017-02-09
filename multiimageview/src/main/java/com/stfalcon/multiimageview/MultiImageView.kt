@@ -22,6 +22,10 @@ import android.graphics.drawable.Drawable
 import android.media.ThumbnailUtils
 import android.util.AttributeSet
 import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.animation.GlideAnimation
+import com.bumptech.glide.request.target.BitmapImageViewTarget
+import com.bumptech.glide.request.target.SimpleTarget
 import java.util.*
 
 /**
@@ -49,6 +53,20 @@ class MultiImageView(context: Context, attrs: AttributeSet) : ImageView(context,
     fun addImage(bitmap: Bitmap) {
         bitmaps.add(bitmap)
         refresh()
+    }
+
+    /**
+     * Add image to view
+     */
+    fun addImage(context: Context, url: String) {
+        Glide.with(context).load(url)
+                .asBitmap()
+                .into(object : SimpleTarget<Bitmap>() {
+                    override fun onResourceReady(resource: Bitmap, glideAnimation: GlideAnimation<in Bitmap>?) {
+                        bitmaps.add(resource)
+                        refresh()
+                    }
+                })
     }
 
     /**

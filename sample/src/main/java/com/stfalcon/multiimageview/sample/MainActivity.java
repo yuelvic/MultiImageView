@@ -10,6 +10,7 @@ import com.stfalcon.multiimageview.MultiImageView;
 
 public class MainActivity extends AppCompatActivity {
     private int imageCount = 0;
+    private static final String URL = "http://mystar1053.com/wp-content/uploads/2013/02/HarveyGreySuitPortrait-col-low-res.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 imageCount += 1;
                 if (imageCount == 1) {
-                    multiImageView.addImage(BitmapFactory.decodeResource(getResources(), R.drawable.avatar1));
+                    multiImageView.addImage(MainActivity.this, URL);
                 } else if (imageCount == 2) {
                     multiImageView.addImage(BitmapFactory.decodeResource(getResources(), R.drawable.avatar2));
                 } else if (imageCount == 3) {
